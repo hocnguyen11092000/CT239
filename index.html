@@ -297,6 +297,15 @@ Vd: 1 2 3
               alert('Vui lòng nhập lần lượt cạnh và trọng số')
               return false
             }
+            if (item.trim().slice(4).includes(' ')) {
+              alert('Nhập không đúng định dạng')
+              var listInput_2 = [...input.childNodes]
+              console.log(listInput_2);
+              if (listInput_2[0]) {
+
+              }
+              listInput_2[idx].style.color = 'red'
+            }
             //console.log(item);
             // console.log(item.trim().slice(0, 1));
             //console.log(item.slice(0,1), item.slice(2,3), item.slice(-1));
