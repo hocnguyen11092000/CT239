@@ -213,7 +213,7 @@ Vd: 1 2 3
 
       $('.reset').onclick = () => {
 
-        $('.input').style.color = 'black'
+        $('.input').style.color = 'inherit'
         $('.tree').innerText = ''
         $('.count').innerText = ''
         input.innerText = ''
@@ -231,14 +231,14 @@ Vd: 1 2 3
 
       var darkMode = $('.darkmode')
 
-      var MODE = JSON.parse(localStorage.getItem('test'))
-      var check = 0 + Number.parseInt(MODE) || 0
+      var MODE = JSON.parse(localStorage.getItem('test')) || 'true'
+      var check = 'true'
       darkMode.onclick = () => {
-        check++
+        check = !check
 
         var MODE = JSON.parse(localStorage.getItem('test'))
         console.log(MODE);
-        if (MODE % 2 == 0 || localStorage.getItem('test') % 2 == 0) {
+        if (!check) {
           $('body').style.background = '#23272f'
 
           dinh.style.background = '#47535d'
@@ -284,7 +284,8 @@ Vd: 1 2 3
         localStorage.setItem('test', check)
 
       }
-      if (localStorage.getItem('test') % 2 != 0) {
+      if (localStorage.getItem('test') == 'false' || localStorage.getItem('test') == '') {
+        check = !check
         $('body').style.background = '#23272f'
 
         dinh.style.background = '#47535d'
@@ -292,8 +293,6 @@ Vd: 1 2 3
         input.style.background = '#47535d'
         input.style.color = '#fff'
         $('.darkmode').innerText = 'Nền sáng'
-        dinh.style.background = '#47535d'
-        input.style.background = '#47535d'
         $('main').style.background = '#343a46'
         $('.left').style.background = '#343a46'
         $('.results').style.background = '#343a46'
@@ -310,13 +309,11 @@ Vd: 1 2 3
       } else {
         $('body').style.background = 'rgb(245 245 250)'
 
+        $('.darkmode').innerText = 'Nền tối'
         dinh.style.background = '#fff'
         dinh.style.color = 'black'
         input.style.background = '#fff'
         input.style.color = 'black'
-        $('.darkmode').innerText = 'Nền tối'
-        dinh.style.background = '#fff'
-        input.style.background = '#fff'
         $('main').style.background = '#fff'
         $('.left').style.background = '#f6f7f9'
         $('.results').style.background = '#fff'
@@ -331,7 +328,6 @@ Vd: 1 2 3
         $('.des').style.color = '#333'
         $('header h2').style.background = 'inherit'
       }
-      localStorage.setItem('test', check)
 
       dinh.onchange = () => {
         if (dinh.value >= 10) {
