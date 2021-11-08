@@ -33,7 +33,7 @@
     #mynetwork {
       width: 450px;
       height: 445px;
-      background-color: #f6f7f9 !important;
+      background-color: #f6f7f9;
       border-radius: 5px;
       overflow: hidden;
       border: 1px solid #f6f7f9;
@@ -74,12 +74,14 @@
       cursor: pointer;
       background-color: #087ea4;
       color: #fff;
+      min-width: 75px;
     }
 
     .left {
       background-color: #f6f7f9;
       padding: 10px;
       border-radius: 5px;
+      max-width: 230px;
     }
 
     .input {
@@ -92,6 +94,7 @@
       border: 1px solid #ccc;
       border-radius: 5px;
       outline: none;
+      color: black;
       background-color: #fff;
     }
 
@@ -108,7 +111,7 @@
 
     .des-title {
       padding: 10px;
-      color: #333;
+      color: inherit;
     }
 
     .right {
@@ -117,7 +120,8 @@
     }
 
     .dowload,
-    .reset {
+    .reset,
+    .darkmode {
       border: none;
       font-size: 14px;
       border-radius: 5px;
@@ -127,6 +131,7 @@
       cursor: pointer;
       background-color: #087ea4;
       color: #fff;
+      min-width: 75px;
     }
 
     .results {
@@ -147,7 +152,7 @@
     }
 
     header h2 {
-      background-color: #fff;
+      background-color: white;
       display: inline-block;
       font-weight: 500;
       color: #087ea4;
@@ -178,6 +183,7 @@ Vd: 1 2 3
         <button class="click">Thực thi</button>
         <button class="dowload">Tải đồ thị</button>
         <button class="reset">Làm mới</button>
+        <button class="darkmode">Nền tối</button>
       </div>
       <div class="right">
         <div id="mynetwork"></div>
@@ -207,12 +213,12 @@ Vd: 1 2 3
 
       $('.reset').onclick = () => {
 
-        $('.input').style.color = '#333'
+        $('.input').style.color = 'black'
         $('.tree').innerText = ''
         $('.count').innerText = ''
         input.innerText = ''
         dinh.value = ''
-        $('canvas').style.display = 'none'
+        $('canvas') && ($('canvas').style.display = 'none')
         Object.assign($('.results').style, {
           opacity: 0,
         })
@@ -222,6 +228,110 @@ Vd: 1 2 3
           behavior: "smooth"
         })
       }
+
+      var darkMode = $('.darkmode')
+
+      var MODE = JSON.parse(localStorage.getItem('test'))
+      var check = 0 + Number.parseInt(MODE) || 0
+      darkMode.onclick = () => {
+        check++
+
+        var MODE = JSON.parse(localStorage.getItem('test'))
+        console.log(MODE);
+        if (MODE % 2 == 0 || localStorage.getItem('test') % 2 == 0) {
+          $('body').style.background = '#23272f'
+
+          dinh.style.background = '#47535d'
+          dinh.style.color = '#fff'
+          input.style.background = '#47535d'
+          input.style.color = '#fff'
+          $('.darkmode').innerText = 'Nền sáng'
+          $('main').style.background = '#343a46'
+          $('.left').style.background = '#343a46'
+          $('.results').style.background = '#343a46'
+          $('.count').style.color = '#087ea4'
+          $('.tree').style.color = '#087ea4'
+          $('.left').style.color = '#f6f7f9'
+          $('#mynetwork').style.background = '#47535d'
+          $('#mynetwork').style.border = 'none'
+          $('.right').style.border = '1px solid #ccc'
+          $('.right').style.borderRadius = '5px'
+          $('.des').style.background = '#343a46'
+          $('.des').style.color = '#f6f7f9'
+          $('header h2').style.background = 'inherit'
+        } else {
+          $('body').style.background = 'rgb(245 245 250)'
+
+          $('.darkmode').innerText = 'Nền tối'
+          dinh.style.background = '#fff'
+          dinh.style.color = 'black'
+          input.style.background = '#fff'
+          input.style.color = 'black'
+          $('main').style.background = '#fff'
+          $('.left').style.background = '#f6f7f9'
+          $('.results').style.background = '#fff'
+          $('.count').style.color = '#087ea4'
+          $('.tree').style.color = '#087ea4'
+          $('.left').style.color = '#333'
+          $('#mynetwork').style.background = '#f6f7f9'
+          $('#mynetwork').style.border = 'none'
+          $('.right').style.border = '1px solid #ccc'
+          $('.right').style.borderRadius = '5px'
+          $('.des').style.background = '#f6f7f9'
+          $('.des').style.color = '#333'
+          $('header h2').style.background = 'inherit'
+        }
+        localStorage.setItem('test', check)
+
+      }
+      if (localStorage.getItem('test') % 2 != 0) {
+        $('body').style.background = '#23272f'
+
+        dinh.style.background = '#47535d'
+        dinh.style.color = '#fff'
+        input.style.background = '#47535d'
+        input.style.color = '#fff'
+        $('.darkmode').innerText = 'Nền sáng'
+        dinh.style.background = '#47535d'
+        input.style.background = '#47535d'
+        $('main').style.background = '#343a46'
+        $('.left').style.background = '#343a46'
+        $('.results').style.background = '#343a46'
+        $('.count').style.color = '#087ea4'
+        $('.tree').style.color = '#087ea4'
+        $('.left').style.color = '#f6f7f9'
+        $('#mynetwork').style.background = '#47535d'
+        $('#mynetwork').style.border = 'none'
+        $('.right').style.border = '1px solid #ccc'
+        $('.right').style.borderRadius = '5px'
+        $('.des').style.background = '#343a46'
+        $('.des').style.color = '#f6f7f9'
+        $('header h2').style.background = 'inherit'
+      } else {
+        $('body').style.background = 'rgb(245 245 250)'
+
+        dinh.style.background = '#fff'
+        dinh.style.color = 'black'
+        input.style.background = '#fff'
+        input.style.color = 'black'
+        $('.darkmode').innerText = 'Nền tối'
+        dinh.style.background = '#fff'
+        input.style.background = '#fff'
+        $('main').style.background = '#fff'
+        $('.left').style.background = '#f6f7f9'
+        $('.results').style.background = '#fff'
+        $('.count').style.color = '#087ea4'
+        $('.tree').style.color = '#087ea4'
+        $('.left').style.color = '#333'
+        $('#mynetwork').style.background = '#f6f7f9'
+        $('#mynetwork').style.border = 'none'
+        $('.right').style.border = '1px solid #ccc'
+        $('.right').style.borderRadius = '5px'
+        $('.des').style.background = '#f6f7f9'
+        $('.des').style.color = '#333'
+        $('header h2').style.background = 'inherit'
+      }
+      localStorage.setItem('test', check)
 
       dinh.onchange = () => {
         if (dinh.value >= 10) {
@@ -348,14 +458,14 @@ Vd: 1 2 3
 
           Object.assign($('.results .tree').style, {
             fontSize: '16px',
-            color: 'red'
+            color: '#087ea4'
           })
           count += Number.parseInt(e.weight)
           console.log(count);
           $('.count').innerText = count
           Object.assign($('.count').style, {
             fontSize: '16px',
-            color: 'red'
+            color: '#087ea4'
           })
           g_edges.push({
             from: v,
@@ -410,17 +520,19 @@ Vd: 1 2 3
 
       $('.dowload').onclick = () => {
         var canvas = document.querySelector("canvas");
-        console.log(canvas);
-        var image = canvas.toDataURL("image/png");
-        console.log(image);
-        var tmpLink = document.createElement('a');
-        tmpLink.download = 'image.png'; // set the name of the download file 
-        tmpLink.href = image;
+        if (canvas) {
+          console.log(canvas);
+          var image = canvas.toDataURL("image/png");
+          console.log(image);
+          var tmpLink = document.createElement('a');
+          tmpLink.download = 'image.png'; // set the name of the download file 
+          tmpLink.href = image;
 
-        // temporarily add link to body and initiate the download  
-        document.body.appendChild(tmpLink);
-        tmpLink.click();
-        document.body.removeChild(tmpLink);
+          // temporarily add link to body and initiate the download  
+          document.body.appendChild(tmpLink);
+          tmpLink.click();
+          document.body.removeChild(tmpLink);
+        }
       }
     </script>
   </body>
