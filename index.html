@@ -284,50 +284,52 @@ Vd: 1 2 3
         localStorage.setItem('test', check)
 
       }
-      if (localStorage.getItem('test') == 'false' || localStorage.getItem('test') == '') {
-        check = !check
-        $('body').style.background = '#23272f'
+      window.addEventListener('load', () => {
+        if (localStorage.getItem('test') == 'false' || localStorage.getItem('test') == '') {
+          check = !check
+          $('body').style.background = '#23272f'
 
-        dinh.style.background = '#47535d'
-        dinh.style.color = '#fff'
-        input.style.background = '#47535d'
-        input.style.color = '#fff'
-        $('.darkmode').innerText = 'Nền sáng'
-        $('main').style.background = '#343a46'
-        $('.left').style.background = '#343a46'
-        $('.results').style.background = '#343a46'
-        $('.count').style.color = '#087ea4'
-        $('.tree').style.color = '#087ea4'
-        $('.left').style.color = '#f6f7f9'
-        $('#mynetwork').style.background = '#47535d'
-        $('#mynetwork').style.border = 'none'
-        $('.right').style.border = '1px solid #ccc'
-        $('.right').style.borderRadius = '5px'
-        $('.des').style.background = '#343a46'
-        $('.des').style.color = '#f6f7f9'
-        $('header h2').style.background = 'inherit'
-      } else {
-        $('body').style.background = 'rgb(245 245 250)'
+          dinh.style.background = '#47535d'
+          dinh.style.color = '#fff'
+          input.style.background = '#47535d'
+          input.style.color = '#fff'
+          $('.darkmode').innerText = 'Nền sáng'
+          $('main').style.background = '#343a46'
+          $('.left').style.background = '#343a46'
+          $('.results').style.background = '#343a46'
+          $('.count').style.color = '#087ea4'
+          $('.tree').style.color = '#087ea4'
+          $('.left').style.color = '#f6f7f9'
+          $('#mynetwork').style.background = '#47535d'
+          $('#mynetwork').style.border = 'none'
+          $('.right').style.border = '1px solid #ccc'
+          $('.right').style.borderRadius = '5px'
+          $('.des').style.background = '#343a46'
+          $('.des').style.color = '#f6f7f9'
+          $('header h2').style.background = 'inherit'
+        } else {
+          $('body').style.background = 'rgb(245 245 250)'
 
-        $('.darkmode').innerText = 'Nền tối'
-        dinh.style.background = '#fff'
-        dinh.style.color = 'black'
-        input.style.background = '#fff'
-        input.style.color = 'black'
-        $('main').style.background = '#fff'
-        $('.left').style.background = '#f6f7f9'
-        $('.results').style.background = '#fff'
-        $('.count').style.color = '#087ea4'
-        $('.tree').style.color = '#087ea4'
-        $('.left').style.color = '#333'
-        $('#mynetwork').style.background = '#f6f7f9'
-        $('#mynetwork').style.border = 'none'
-        $('.right').style.border = '1px solid #ccc'
-        $('.right').style.borderRadius = '5px'
-        $('.des').style.background = '#f6f7f9'
-        $('.des').style.color = '#333'
-        $('header h2').style.background = 'inherit'
-      }
+          $('.darkmode').innerText = 'Nền tối'
+          dinh.style.background = '#fff'
+          dinh.style.color = 'black'
+          input.style.background = '#fff'
+          input.style.color = 'black'
+          $('main').style.background = '#fff'
+          $('.left').style.background = '#f6f7f9'
+          $('.results').style.background = '#fff'
+          $('.count').style.color = '#087ea4'
+          $('.tree').style.color = '#087ea4'
+          $('.left').style.color = '#333'
+          $('#mynetwork').style.background = '#f6f7f9'
+          $('#mynetwork').style.border = 'none'
+          $('.right').style.border = '1px solid #ccc'
+          $('.right').style.borderRadius = '5px'
+          $('.des').style.background = '#f6f7f9'
+          $('.des').style.color = '#333'
+          $('header h2').style.background = 'inherit'
+        }
+      })
 
       dinh.onchange = () => {
         if (dinh.value >= 10) {
