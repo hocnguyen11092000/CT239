@@ -1,0 +1,45 @@
+@media only screen and (max-width: 739px) {
+  body {
+    width: 739px !important;
+  }
+
+  .left {
+    width: 739px !important;
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 10px;
+  }
+
+  .click {
+    margin-top: 10px;
+  }
+
+  .main {
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    max-width: 739px;
+    height: auto;
+    overflow-y: auto;
+  }
+
+  .right {
+    margin-left: 0;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  #mynetwork {
+    width: 100%;
+    border: 1px solid #ccc;
+  }
+
+  .des {
+    margin-left: 0;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
